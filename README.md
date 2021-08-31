@@ -6,7 +6,7 @@
 
   <img alt="Up API" src="https://github.com/up-banking/api/raw/master/assets/up-api.jpg" />
 
-  .NET 5 API wrapper for the Up bank
+  __.NET 5 API wrapper for the Up bank__
 
 </div>
 
@@ -32,9 +32,6 @@ you have your access token ❤.
 * 📖 [API Documentation](https://developer.up.com.au)
 * 🕵️ [API Issues and Support](https://github.com/up-banking/api/issues)
 * 🚀 [API Changelog](https://github.com/up-banking/api/issues/31)
-
-Please ensure you keep any personal information out of issues submitted on this
-repository.
 
 ## Contributors
 
