@@ -1,2 +1,2 @@
 # Up.NET
-.NET Core API wrapper for the Up bank API
+.NET 5 API wrapper for the Up bank
