@@ -10,7 +10,7 @@ using Up.NET.Models;
 
 namespace Up.NET.Api
 {
-    public partial class UpApi
+    public partial class UpApi : IUpApi
     {
         private readonly HttpClient _httpClient;
         private string _accessToken;
