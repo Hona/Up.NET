@@ -56,6 +56,6 @@ namespace Up.NET.Api
             => await InternalGetTransactionsAsync<DataResponse<TransactionResource>>($"/transactions/{id}", pageSize, status, since, until, category, tag);
         
         public async Task<UpResponse<PaginatedDataResponse<TransactionResource>>> GetTransactionsAsync(string accountId, int? pageSize = null, TransactionStatus? status = null, DateTime? since = null, DateTime? until = null, string category = null, string tag = null)
-            => await InternalGetTransactionsAsync<PaginatedDataResponse<TransactionResource>>($"/account/{accountId}/transactions");
+            => await InternalGetTransactionsAsync<PaginatedDataResponse<TransactionResource>>($"/accounts/{accountId}/transactions");
     }
 }
