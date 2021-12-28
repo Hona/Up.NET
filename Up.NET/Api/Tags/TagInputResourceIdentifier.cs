@@ -1,11 +1,8 @@
-﻿using System;
+﻿namespace Up.NET.Api.Tags;
 
-namespace Up.NET.Api.Tags
+public class TagInputResourceIdentifier
 {
-    public class TagInputResourceIdentifier
-    {
-        [Obsolete("Always `tags`")] public string Type { get; set; } = "tags";
+    [Obsolete("Always `tags`")] public string Type { get; set; } = "tags";
 
-        public string Id { get; set; }
-    }
+    public string Id { get; set; }
 }

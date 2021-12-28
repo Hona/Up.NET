@@ -1,7 +1,6 @@
-﻿namespace Up.NET.Api.Tags
+﻿namespace Up.NET.Api.Tags;
+
+public class TagRelationships
 {
-    public class TagRelationships
-    {
-        public TagTransactions Transactions { get; set; }
-    }
+    public TagTransactions Transactions { get; set; }
 }

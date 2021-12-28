@@ -1,17 +1,15 @@
-﻿using System;
-using Up.NET.Models;
+﻿using Up.NET.Models;
 
-namespace Up.NET.Api.Transactions
+namespace Up.NET.Api.Transactions;
+
+public class TransactionResource
 {
-    public class TransactionResource
-    {
-        [Obsolete("Always `transactions`")]
-        public string Type { get; set; }
+    [Obsolete("Always `transactions`")]
+    public string Type { get; set; }
 
-        public string Id { get; set; }
+    public string Id { get; set; }
 
-        public TransactionAttributes Attributes { get; set; }
-        public TransactionRelationships Relationships { get; set; }
-        public SelfLink Links { get; set; }
-    }
+    public TransactionAttributes Attributes { get; set; }
+    public TransactionRelationships Relationships { get; set; }
+    public SelfLink Links { get; set; }
 }

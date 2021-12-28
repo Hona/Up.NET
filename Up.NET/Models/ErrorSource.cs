@@ -1,8 +1,7 @@
-﻿namespace Up.NET.Models
+﻿namespace Up.NET.Models;
+
+public class ErrorSource
 {
-    public class ErrorSource
-    {
-        public string Parameter { get; set; }
-        public string Pointer { get; set; }
-    }
+    public string Parameter { get; set; }
+    public string Pointer { get; set; }
 }

@@ -1,7 +1,6 @@
-﻿namespace Up.NET.Api.Categories
+﻿namespace Up.NET.Api.Categories;
+
+public class CategoriesAttributes
 {
-    public class CategoriesAttributes
-    {
-        public string Name { get; set; }
-    }
+    public string Name { get; set; }
 }

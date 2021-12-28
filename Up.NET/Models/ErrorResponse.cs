@@ -2,14 +2,13 @@
 using System.Text.Json.Serialization;
 using Up.NET.Converters;
 
-namespace Up.NET.Models
+namespace Up.NET.Models;
+
+public class ErrorResponse
 {
-    public class ErrorResponse
-    {
-        [JsonConverter(typeof(StringToHttpStatusCodeConverter))]
-        public HttpStatusCode Status { get; set; }
-        public string Title { get; set; }
-        public string Detail { get; set; }
-        public ErrorSource Source { get; set; }
-    }
+    [JsonConverter(typeof(StringToHttpStatusCodeConverter))]
+    public HttpStatusCode Status { get; set; }
+    public string Title { get; set; }
+    public string Detail { get; set; }
+    public ErrorSource Source { get; set; }
 }

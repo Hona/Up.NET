@@ -1,8 +1,7 @@
-﻿namespace Up.NET.Models
+﻿namespace Up.NET.Models;
+
+public class RelatedData<T> where T : class
 {
-    public class RelatedData<T> where T : class
-    {
-        public T Data { get; set; }
-        public RelatedLink Links { get; set; }
-    }
+    public T Data { get; set; }
+    public RelatedLink Links { get; set; }
 }

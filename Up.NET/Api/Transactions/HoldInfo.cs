@@ -1,10 +1,9 @@
 ﻿using Up.NET.Api.Accounts;
 
-namespace Up.NET.Api.Transactions
+namespace Up.NET.Api.Transactions;
+
+public class HoldInfo
 {
-    public class HoldInfo
-    {
-        public MoneyObject Amount { get; set; }
-        public MoneyObject ForeignAmount { get; set; }
-    }
+    public MoneyObject Amount { get; set; }
+    public MoneyObject ForeignAmount { get; set; }
 }

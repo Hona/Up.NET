@@ -1,7 +1,6 @@
-﻿namespace Up.NET.Api.Webhooks.Logs
+﻿namespace Up.NET.Api.Webhooks.Logs;
+
+public class WebhookDeliveryLogRequest
 {
-    public class WebhookDeliveryLogRequest
-    {
-        public string Body { get; set; }
-    }
+    public string Body { get; set; }
 }

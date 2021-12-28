@@ -1,9 +1,8 @@
 ﻿using Up.NET.Models;
 
-namespace Up.NET.Api.Accounts
+namespace Up.NET.Api.Accounts;
+
+public class AccountTransactions
 {
-    public class AccountTransactions
-    {
-        public RelatedLink Links { get; set; }
-    }
+    public RelatedLink Links { get; set; }
 }

@@ -1,9 +1,8 @@
 ﻿using Up.NET.Models;
 
-namespace Up.NET.Api.Webhooks
+namespace Up.NET.Api.Webhooks;
+
+public class WebhookRelatedLogs
 {
-    public class WebhookRelatedLogs
-    {
-        public RelatedLink Links { get; set; }
-    }
+    public RelatedLink Links { get; set; }
 }

@@ -1,7 +1,6 @@
-﻿namespace Up.NET.Api.Utilities
+﻿namespace Up.NET.Api.Utilities;
+
+public class PingResponse
 {
-    public class PingResponse
-    {
-        public PingMeta Meta { get; set; }
-    }
+    public PingMeta Meta { get; set; }
 }

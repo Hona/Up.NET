@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using Up.NET.Models;
+﻿using Up.NET.Models;
 
-namespace Up.NET.Api.Categories
+namespace Up.NET.Api.Categories;
+
+public class CategoriesChildren
 {
-    public class CategoriesChildren
-    {
-        public List<CategoriesRelated> Children { get; set; }
-        public RelatedLink Links { get; set; }
-    }
+    public List<CategoriesRelated> Children { get; set; }
+    public RelatedLink Links { get; set; }
 }

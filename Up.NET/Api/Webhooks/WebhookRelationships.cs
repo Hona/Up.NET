@@ -1,7 +1,6 @@
-﻿namespace Up.NET.Api.Webhooks
+﻿namespace Up.NET.Api.Webhooks;
+
+public class WebhookRelationships
 {
-    public class WebhookRelationships
-    {
-        public WebhookRelatedLogs Logs { get; set; }
-    }
+    public WebhookRelatedLogs Logs { get; set; }
 }

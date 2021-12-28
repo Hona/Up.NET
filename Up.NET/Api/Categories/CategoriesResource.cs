@@ -1,17 +1,14 @@
-﻿using System;
-using System.Text.Json.Serialization;
-using Up.NET.Models;
+﻿using Up.NET.Models;
 
-namespace Up.NET.Api.Categories
+namespace Up.NET.Api.Categories;
+
+public class CategoriesResource
 {
-    public class CategoriesResource
-    {
-        [Obsolete("Always `categories`")]
-        public string Type { get; set; }
+    [Obsolete("Always `categories`")]
+    public string Type { get; set; }
 
-        public string Id { get; set; }
-        public CategoriesAttributes Attributes { get; set; }
-        public CategoriesRelationships Relationships { get; set; }
-        public SelfLink Links { get; set; }
-    }
+    public string Id { get; set; }
+    public CategoriesAttributes Attributes { get; set; }
+    public CategoriesRelationships Relationships { get; set; }
+    public SelfLink Links { get; set; }
 }

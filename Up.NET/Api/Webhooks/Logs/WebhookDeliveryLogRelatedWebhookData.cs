@@ -1,11 +1,8 @@
-﻿using System;
+﻿namespace Up.NET.Api.Webhooks.Logs;
 
-namespace Up.NET.Api.Webhooks.Logs
+public class WebhookDeliveryLogRelatedWebhookData
 {
-    public class WebhookDeliveryLogRelatedWebhookData
-    {
-        [Obsolete("Always `webhook-events`")]
-        public string Type { get; set; }
-        public string Id { get; set; }
-    }
+    [Obsolete("Always `webhook-events`")]
+    public string Type { get; set; }
+    public string Id { get; set; }
 }

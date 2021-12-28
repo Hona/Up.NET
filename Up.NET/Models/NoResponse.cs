@@ -1,7 +1,6 @@
-﻿namespace Up.NET.Models
+﻿namespace Up.NET.Models;
+
+public class NoResponse
 {
-    public class NoResponse
-    {
         
-    }
 }

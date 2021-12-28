@@ -1,14 +1,13 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Up.NET.Models
+namespace Up.NET.Models;
+
+public class PaginatedLinks
 {
-    public class PaginatedLinks
-    {
-        [JsonPropertyName("prev")]
-        public string Previous { get; set; }
-        public string Next { get; set; }
+    [JsonPropertyName("prev")]
+    public string Previous { get; set; }
+    public string Next { get; set; }
         
-        public bool HasNext => Next != null;
-        public bool HasPrevious => Previous != null;
-    }
+    public bool HasNext => Next != null;
+    public bool HasPrevious => Previous != null;
 }

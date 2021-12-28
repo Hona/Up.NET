@@ -1,10 +1,7 @@
-﻿using System.Text.Json.Serialization;
+﻿namespace Up.NET.Api.Webhooks;
 
-namespace Up.NET.Api.Webhooks
+public class WebhookInputAttributes
 {
-    public class WebhookInputAttributes
-    {
-        public string Url { get; set; }
-        public string Description { get; set; }
-    }
+    public string Url { get; set; }
+    public string Description { get; set; }
 }

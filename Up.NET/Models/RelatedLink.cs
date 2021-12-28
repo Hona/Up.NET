@@ -1,9 +1,6 @@
-﻿using System.Text.Json.Serialization;
+﻿namespace Up.NET.Models;
 
-namespace Up.NET.Models
+public class RelatedLink
 {
-    public class RelatedLink
-    {
-        public string Related { get; set; }
-    }
+    public string Related { get; set; }
 }

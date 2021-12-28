@@ -1,13 +1,10 @@
-﻿using System;
+﻿namespace Up.NET.Api.Webhooks.Logs;
 
-namespace Up.NET.Api.Webhooks.Logs
+public class WebhookDeliveryLogResource
 {
-    public class WebhookDeliveryLogResource
-    {
-        [Obsolete("Always `webhook-delivery-logs`")]
-        public string Type { get; set; }
-        public string Id { get; set; }
-        public WebhookDeliveryLogAttributes Attributes { get; set; }
-        public WebhookDeliveryLogRelationships Relationships { get; set; }
-    }
+    [Obsolete("Always `webhook-delivery-logs`")]
+    public string Type { get; set; }
+    public string Id { get; set; }
+    public WebhookDeliveryLogAttributes Attributes { get; set; }
+    public WebhookDeliveryLogRelationships Relationships { get; set; }
 }

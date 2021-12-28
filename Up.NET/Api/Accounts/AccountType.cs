@@ -1,11 +1,10 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Up.NET.Api.Accounts
+namespace Up.NET.Api.Accounts;
+
+[JsonConverter(typeof(JsonStringEnumMemberConverter))]
+public enum AccountType
 {
-    [JsonConverter(typeof(JsonStringEnumMemberConverter))]
-    public enum AccountType
-    {
-        Saver,
-        Transactional
-    }
+    Saver,
+    Transactional
 }

@@ -1,9 +1,6 @@
-﻿using System.Text.Json.Serialization;
+﻿namespace Up.NET.Models;
 
-namespace Up.NET.Models
+public class DataWrapper<T>
 {
-    public class DataWrapper<T>
-    {
-        public T Data { get; set; }
-    }
+    public T Data { get; set; }
 }
