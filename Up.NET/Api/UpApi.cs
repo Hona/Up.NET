@@ -8,17 +8,18 @@ namespace Up.NET.Api;
 
 public partial class UpApi : IUpApi
 {
-    private readonly HttpClient _httpClient;
-    private string _accessToken;
-    private bool _enableRetry;
-    private int _maxRetries;
     private static readonly string BaseUrl = "https://api.up.com.au/api/v1";
+    private readonly HttpClient _httpClient;
 
     private readonly JsonSerializerOptions _jsonSerializerOptions = new()
     {
         PropertyNameCaseInsensitive = true,
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase
     };
+
+    private readonly string _accessToken;
+    private readonly bool _enableRetry;
+    private readonly int _maxRetries;
 
     public UpApi(string accessToken, HttpClient httpClient = null, bool enableRetry = true, int maxRetries = 5)
     {
@@ -29,7 +30,8 @@ public partial class UpApi : IUpApi
     }
 
     public async Task<UpResponse<T>> SendRequestAsync<T>(HttpMethod httpMethod, string relativeUrl,
-        Dictionary<string, string> queryParameters = null, object content = null, bool urlIsAbsolute = false) where T : class
+        Dictionary<string, string> queryParameters = null, object content = null, bool urlIsAbsolute = false)
+        where T : class
     {
         var uri = urlIsAbsolute
             ? new Uri(relativeUrl)
@@ -87,10 +89,12 @@ public partial class UpApi : IUpApi
     }
 
     public async Task<UpResponse<PaginatedDataResponse<T>>> SendPaginatedRequestAsync<T>(HttpMethod httpMethod,
-        string relativeUrl, Dictionary<string, string> queryParameters = null, object content = null, bool urlIsAbsolute = false) where T : class
+        string relativeUrl, Dictionary<string, string> queryParameters = null, object content = null,
+        bool urlIsAbsolute = false) where T : class
     {
         var output =
-            await SendRequestAsync<PaginatedDataResponse<T>>(httpMethod, relativeUrl, queryParameters, content, urlIsAbsolute);
+            await SendRequestAsync<PaginatedDataResponse<T>>(httpMethod, relativeUrl, queryParameters, content,
+                urlIsAbsolute);
 
         output.Response.UpApi = this;
 

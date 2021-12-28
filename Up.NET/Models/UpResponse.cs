@@ -10,13 +10,13 @@ public class UpResponse<T> where T : class
 public abstract class UpResponse
 {
     public static UpResponse<T> FromSuccess<T>(T response) where T : class
-        => new UpResponse<T>
+        => new()
         {
             Response = response
         };
 
     public static UpResponse<T> FromFail<T>(List<ErrorResponse> errorResponse) where T : class
-        => new UpResponse<T>
+        => new()
         {
             Errors = errorResponse
         };

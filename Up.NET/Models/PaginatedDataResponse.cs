@@ -1,5 +1,4 @@
-﻿using System.Net.Http.Json;
-using Up.NET.Api;
+﻿using Up.NET.Api;
 
 namespace Up.NET.Models;
 
@@ -9,6 +8,7 @@ public class PaginatedDataResponse<T> where T : class
 
     public PaginatedLinks Links { get; set; }
     internal IUpApi UpApi { get; set; }
+
     public async Task<UpResponse<PaginatedDataResponse<T>>> GetNextPageAsync() =>
         await UpApi.SendPaginatedRequestAsync<T>(HttpMethod.Get, Links.Next, urlIsAbsolute: true);
 

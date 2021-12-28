@@ -6,8 +6,6 @@ namespace Up.NET.Api.Transactions;
 [JsonConverter(typeof(JsonStringEnumMemberConverter))]
 public enum TransactionStatus
 {
-    [EnumMember(Value = "HELD")]
-    Held,
-    [EnumMember(Value = "SETTLED")]
-    Settled
+    [EnumMember(Value = "HELD")] Held,
+    [EnumMember(Value = "SETTLED")] Settled
 }

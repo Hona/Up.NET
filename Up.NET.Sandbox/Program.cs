@@ -10,7 +10,8 @@ if (accounts.Success)
 {
     foreach (var account in accounts.Response.Data)
     {
-        Console.WriteLine($"{account.Attributes.DisplayName} ({account.Attributes.AccountType}): ${account.Attributes.Balance.Value} {account.Attributes.Balance.CurrencyCode}");
+        Console.WriteLine(
+            $"{account.Attributes.DisplayName} ({account.Attributes.AccountType}): ${account.Attributes.Balance.Value} {account.Attributes.Balance.CurrencyCode}");
         Console.WriteLine($" - {account.Id}");
     }
 }
@@ -70,7 +71,8 @@ if (transactions.Success)
 {
     foreach (var transaction in transactions.Response.Data)
     {
-        Console.WriteLine($"{transaction.Id}: '{transaction.Relationships.Account.Data.Id}' {transaction.Attributes.Amount.Value} {transaction.Attributes.Message}");
+        Console.WriteLine(
+            $"{transaction.Id}: '{transaction.Relationships.Account.Data.Id}' {transaction.Attributes.Amount.Value} {transaction.Attributes.Message}");
     }
 }
 
@@ -84,7 +86,8 @@ if (nextPageOfTransactions.Success)
 {
     foreach (var transaction in nextPageOfTransactions.Response.Data)
     {
-        Console.WriteLine($"{transaction.Id}: '{transaction.Relationships.Account.Data.Id}' {transaction.Attributes.Amount.Value} {transaction.Attributes.Message}");
+        Console.WriteLine(
+            $"{transaction.Id}: '{transaction.Relationships.Account.Data.Id}' {transaction.Attributes.Amount.Value} {transaction.Attributes.Message}");
     }
 }
 

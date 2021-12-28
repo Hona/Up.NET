@@ -6,7 +6,26 @@ namespace Up.NET.Api;
 
 public partial class UpApi
 {
-    private async Task<UpResponse<DataResponse<T>>> InternalGetTransactionAsync<T>(string endpoint, int? pageSize = null, TransactionStatus? status = null, DateTime? since = null, DateTime? until = null, string category = null, string tag = null) where T : class
+    public async Task<UpResponse<PaginatedDataResponse<TransactionResource>>> GetTransactionsAsync(int? pageSize = null,
+        TransactionStatus? status = null, DateTime? since = null, DateTime? until = null, string category = null,
+        string tag = null)
+        => await InternalGetTransactionsAsync<TransactionResource>("/transactions", pageSize, status, since, until,
+            category, tag);
+
+    public async Task<UpResponse<DataResponse<TransactionResource>>> GetTransactionAsync(string id,
+        int? pageSize = null, TransactionStatus? status = null, DateTime? since = null, DateTime? until = null,
+        string category = null, string tag = null)
+        => await InternalGetTransactionAsync<TransactionResource>($"/transactions/{id}", pageSize, status, since, until,
+            category, tag);
+
+    public async Task<UpResponse<PaginatedDataResponse<TransactionResource>>> GetTransactionsAsync(string accountId,
+        int? pageSize = null, TransactionStatus? status = null, DateTime? since = null, DateTime? until = null,
+        string category = null, string tag = null)
+        => await InternalGetTransactionsAsync<TransactionResource>($"/accounts/{accountId}/transactions");
+
+    private async Task<UpResponse<DataResponse<T>>> InternalGetTransactionAsync<T>(string endpoint,
+        int? pageSize = null, TransactionStatus? status = null, DateTime? since = null, DateTime? until = null,
+        string category = null, string tag = null) where T : class
     {
         var queryParams = new Dictionary<string, string>();
 
@@ -44,7 +63,9 @@ public partial class UpApi
             HttpMethod.Get, endpoint, queryParams);
     }
 
-    private async Task<UpResponse<PaginatedDataResponse<T>>> InternalGetTransactionsAsync<T>(string endpoint, int? pageSize = null, TransactionStatus? status = null, DateTime? since = null, DateTime? until = null, string category = null, string tag = null) where T : class
+    private async Task<UpResponse<PaginatedDataResponse<T>>> InternalGetTransactionsAsync<T>(string endpoint,
+        int? pageSize = null, TransactionStatus? status = null, DateTime? since = null, DateTime? until = null,
+        string category = null, string tag = null) where T : class
     {
         var queryParams = new Dictionary<string, string>();
 
@@ -81,14 +102,4 @@ public partial class UpApi
         return await SendPaginatedRequestAsync<T>(
             HttpMethod.Get, endpoint, queryParams);
     }
-
-
-    public async Task<UpResponse<PaginatedDataResponse<TransactionResource>>> GetTransactionsAsync(int? pageSize = null, TransactionStatus? status = null, DateTime? since = null, DateTime? until = null, string category = null, string tag = null)
-        => await InternalGetTransactionsAsync<TransactionResource>("/transactions", pageSize, status, since, until, category, tag);
-
-    public async Task<UpResponse<DataResponse<TransactionResource>>> GetTransactionAsync(string id, int? pageSize = null, TransactionStatus? status = null, DateTime? since = null, DateTime? until = null, string category = null, string tag = null)
-        => await InternalGetTransactionAsync<TransactionResource>($"/transactions/{id}", pageSize, status, since, until, category, tag);
-
-    public async Task<UpResponse<PaginatedDataResponse<TransactionResource>>> GetTransactionsAsync(string accountId, int? pageSize = null, TransactionStatus? status = null, DateTime? since = null, DateTime? until = null, string category = null, string tag = null)
-        => await InternalGetTransactionsAsync<TransactionResource>($"/accounts/{accountId}/transactions");
 }

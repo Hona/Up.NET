@@ -38,6 +38,7 @@ public partial class UpApi
     public async Task<UpResponse<WebhookEventResource>> PingWebhookAsync(string webhookId)
         => await SendRequestAsync<WebhookEventResource>(HttpMethod.Post, $"/webhooks/{webhookId}/ping");
 
-    public async Task<UpResponse<PaginatedDataResponse<WebhookDeliveryLogResource>>> GetWebhookLogsAsync(string webhookId)
+    public async Task<UpResponse<PaginatedDataResponse<WebhookDeliveryLogResource>>> GetWebhookLogsAsync(
+        string webhookId)
         => await SendPaginatedRequestAsync<WebhookDeliveryLogResource>(HttpMethod.Get, $"/webhooks/{webhookId}/logs");
 }

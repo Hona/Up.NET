@@ -10,8 +10,11 @@ public class StringToHttpStatusCodeConverter : JsonConverter<HttpStatusCode>
 {
     public override HttpStatusCode Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        if (reader.TokenType != JsonTokenType.String) throw new InvalidOperationException("Error object expected HTTP status code property to be a string");
-            
+        if (reader.TokenType != JsonTokenType.String)
+        {
+            throw new InvalidOperationException("Error object expected HTTP status code property to be a string");
+        }
+
         var span = reader.HasValueSequence ? reader.ValueSequence.ToArray() : reader.ValueSpan;
         if (Utf8Parser.TryParse(span, out int number, out var bytesConsumed) && span.Length == bytesConsumed)
         {

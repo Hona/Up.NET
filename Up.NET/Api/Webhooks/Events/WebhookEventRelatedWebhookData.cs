@@ -2,8 +2,7 @@
 
 public class WebhookEventRelatedWebhookData
 {
-    [Obsolete("Always `webhooks`")]
-    public string Type { get; set; }
+    [Obsolete("Always `webhooks`")] public string Type { get; set; }
 
     public string Id { get; set; }
 }

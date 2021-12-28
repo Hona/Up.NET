@@ -8,10 +8,11 @@ public enum WebhookEventType
 {
     [EnumMember(Value = "TRANSACTION_CREATED")]
     TransactionCreated,
+
     [EnumMember(Value = "TRANSACTION_SETTLED")]
     TransactionSettled,
+
     [EnumMember(Value = "TRANSACTION_DELETED")]
     TransactionDeleted,
-    [EnumMember(Value = "PING")]
-    Ping
+    [EnumMember(Value = "PING")] Ping
 }

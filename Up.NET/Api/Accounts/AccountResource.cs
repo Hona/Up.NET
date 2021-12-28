@@ -4,8 +4,8 @@ namespace Up.NET.Api.Accounts;
 
 public class AccountResource
 {
-    [Obsolete("Always `accounts`")]
-    public string Type { get; set; }
+    [Obsolete("Always `accounts`")] public string Type { get; set; }
+
     public string Id { get; set; }
     public AccountAttributes Attributes { get; set; }
     public AccountRelationships Relationships { get; set; }

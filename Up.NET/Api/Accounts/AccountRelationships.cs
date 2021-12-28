@@ -3,5 +3,4 @@
 public class AccountRelationships
 {
     public AccountTransactions Transactions { get; set; }
-
 }

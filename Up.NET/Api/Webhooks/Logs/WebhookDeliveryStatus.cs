@@ -6,10 +6,9 @@ namespace Up.NET.Api.Webhooks.Logs;
 [JsonConverter(typeof(JsonStringEnumMemberConverter))]
 public enum WebhookDeliveryStatus
 {
-    [EnumMember(Value = "DELIVERED")]
-    Delivered,
-    [EnumMember(Value = "UNDELIVERABLE")]
-    Undeliverable,
+    [EnumMember(Value = "DELIVERED")] Delivered,
+    [EnumMember(Value = "UNDELIVERABLE")] Undeliverable,
+
     [EnumMember(Value = "BAD_RESPONSE_CODE")]
     BadResponseCode
 }

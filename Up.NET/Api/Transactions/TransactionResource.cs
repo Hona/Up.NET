@@ -4,8 +4,7 @@ namespace Up.NET.Api.Transactions;
 
 public class TransactionResource
 {
-    [Obsolete("Always `transactions`")]
-    public string Type { get; set; }
+    [Obsolete("Always `transactions`")] public string Type { get; set; }
 
     public string Id { get; set; }
 

@@ -5,6 +5,6 @@ namespace Up.NET.Api;
 
 public partial class UpApi
 {
-    public async Task<UpResponse<PingResponse>> GetPingAsync() 
+    public async Task<UpResponse<PingResponse>> GetPingAsync()
         => await SendRequestAsync<PingResponse>(HttpMethod.Get, "/util/ping");
 }
