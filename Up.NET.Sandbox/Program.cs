@@ -6,6 +6,7 @@ Console.WriteLine("-- GetAccountsAsync --");
 var accounts = await up.GetAccountsAsync();
 
 Console.WriteLine(accounts.Success);
+
 if (accounts.Success)
 {
     foreach (var account in accounts.Response.Data)
@@ -15,6 +16,23 @@ if (accounts.Success)
         Console.WriteLine($" - {account.Id}");
     }
 }
+
+while (accounts.Response.Links.HasNext)
+{
+    Console.WriteLine("Has another page");
+    accounts = await accounts.Response.GetNextPageAsync();
+    
+    if (accounts.Success)
+    {
+        foreach (var account in accounts.Response.Data)
+        {
+            Console.WriteLine(
+                $"{account.Attributes.DisplayName} ({account.Attributes.AccountType}): ${account.Attributes.Balance.Value} {account.Attributes.Balance.CurrencyCode}");
+            Console.WriteLine($" - {account.Id}");
+        }
+    }
+}
+
 
 Console.WriteLine();
 Console.WriteLine("-- GetAccountAsync --");

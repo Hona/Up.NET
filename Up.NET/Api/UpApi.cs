@@ -96,7 +96,11 @@ public partial class UpApi : IUpApi
             await SendRequestAsync<PaginatedDataResponse<T>>(httpMethod, relativeUrl, queryParameters, content,
                 urlIsAbsolute);
 
-        output.Response.UpApi = this;
+        if (output.Response is not null)
+        {        
+            output.Response.UpApi = this;
+        }
+        
 
         return output;
     }
