@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Up.NET.Api.Accounts;
 
@@ -6,5 +7,6 @@ namespace Up.NET.Api.Accounts;
 public enum AccountType
 {
     Saver,
-    Transactional
+    Transactional,
+    [EnumMember(Value = "HOME_LOAN")] HomeLoan
 }

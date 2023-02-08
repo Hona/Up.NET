@@ -12,7 +12,7 @@ if (accounts.Success)
     foreach (var account in accounts.Response.Data)
     {
         Console.WriteLine(
-            $"{account.Attributes.DisplayName} ({account.Attributes.AccountType}): ${account.Attributes.Balance.Value} {account.Attributes.Balance.CurrencyCode}");
+            $"{account.Attributes.DisplayName} ({account.Attributes.AccountType} {account.Attributes.OwnershipType}): ${account.Attributes.Balance.Value} {account.Attributes.Balance.CurrencyCode}");
         Console.WriteLine($" - {account.Id}");
     }
 }
@@ -27,7 +27,7 @@ while (accounts.Response.Links.HasNext)
         foreach (var account in accounts.Response.Data)
         {
             Console.WriteLine(
-                $"{account.Attributes.DisplayName} ({account.Attributes.AccountType}): ${account.Attributes.Balance.Value} {account.Attributes.Balance.CurrencyCode}");
+                $"{account.Attributes.DisplayName} ({account.Attributes.AccountType} {account.Attributes.OwnershipType}): ${account.Attributes.Balance.Value} {account.Attributes.Balance.CurrencyCode}");
             Console.WriteLine($" - {account.Id}");
         }
     }
