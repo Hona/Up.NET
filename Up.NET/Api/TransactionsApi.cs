@@ -81,14 +81,14 @@ public partial class UpApi
 
         if (since != null)
         {
-            queryParams.Add("filter[since]", JsonSerializer.Serialize(since.Value));
+            queryParams.Add("filter[since]", since.Value.ToString("yyyy-MM-dd'T'HH:mm:ss.fffK"));
         }
 
         if (until != null)
         {
-            queryParams.Add("filter[until]", JsonSerializer.Serialize(until.Value));
+            queryParams.Add("filter[until]", until.Value.ToString("yyyy-MM-dd'T'HH:mm:ss.fffK"));
         }
-
+        
         if (category != null)
         {
             queryParams.Add("filter[category]", category);
