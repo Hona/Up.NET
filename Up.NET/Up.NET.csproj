@@ -8,7 +8,7 @@
         <Authors>Luke Parker</Authors>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageId>HUp.NET</PackageId>
-        <Version>1.4.1</Version>
+        <Version>1.5.0</Version>
         <ImplicitUsings>true</ImplicitUsings>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <IsAotCompatible>true</IsAotCompatible>
