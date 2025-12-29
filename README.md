@@ -8,6 +8,8 @@
 
 __.NET API wrapper for [Up Bank](https://up.com.au)__
 
+**Native AOT Compatible** | **Zero Reflection** | **Source-Generated JSON Serialization**
+
 </div>
 
 ## Installation
@@ -92,6 +94,21 @@ var settled = await upApi.GetTransactionsAsync(
 // Filter by category or tag
 var groceries = await upApi.GetTransactionsAsync(category: "groceries");
 var tagged = await upApi.GetTransactionsAsync(tag: "holiday");
+```
+
+## Native AOT Support
+
+Up.NET is fully compatible with .NET Native AOT compilation, making it ideal for:
+
+- **iOS/Android apps** via .NET MAUI
+- **Serverless functions** with minimal cold start
+- **CLI tools** with instant startup
+- **Embedded/IoT** scenarios
+
+The library uses source-generated JSON serialization with zero runtime reflection, ensuring predictable performance and smaller binary sizes.
+
+```bash
+dotnet publish -c Release -p:PublishAot=true
 ```
 
 ## Getting Your API Token
