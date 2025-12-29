@@ -1,6 +1,14 @@
-﻿using Up.NET.Api;
+using Microsoft.Extensions.Configuration;
+using Up.NET.Api;
 
-var up = new UpApi("");
+var configuration = new ConfigurationBuilder()
+    .AddUserSecrets<Program>()
+    .Build();
+
+var apiKey = configuration["UpBank:ApiKey"] 
+    ?? throw new InvalidOperationException("UpBank:ApiKey not found in user secrets. Run: dotnet user-secrets set \"UpBank:ApiKey\" \"your-api-key\"");
+
+var up = new UpApi(apiKey);
 
 Console.WriteLine("-- GetAccountsAsync --");
 var accounts = await up.GetAccountsAsync();
@@ -111,3 +119,5 @@ if (nextPageOfTransactions.Success)
 
 
 Console.ReadLine();
+
+public partial class Program { }
