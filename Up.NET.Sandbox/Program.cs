@@ -335,6 +335,90 @@ if (webhooks.Success && webhooks.Response.Data.Any())
 //     Console.WriteLine($"Success: {deleteResult.Success}");
 // }
 
+// ============================================
+// ASYNC STREAMING (IAsyncEnumerable)
+// ============================================
+
+Console.WriteLine();
+Console.WriteLine("=== GetTransactionsStreamAsync (basic streaming) ===");
+var streamedCount = 0;
+await foreach (var tx in up.GetTransactionsStreamAsync(pageSize: 5))
+{
+    streamedCount++;
+    Console.WriteLine($"  {streamedCount}. {tx.Attributes.Description}: {tx.Attributes.Amount.Value}");
+    
+    // Demonstrate short-circuiting - stop after 10 items
+    if (streamedCount >= 10)
+    {
+        Console.WriteLine("  ... (stopping after 10 items to demonstrate short-circuit)");
+        break;
+    }
+}
+Console.WriteLine($"Total streamed: {streamedCount} transactions");
+
+Console.WriteLine();
+Console.WriteLine("=== GetTransactionsStreamAsync (with filters) ===");
+var foodCount = 0;
+await foreach (var tx in up.GetTransactionsStreamAsync(tag: "food", pageSize: 3))
+{
+    foodCount++;
+    Console.WriteLine($"  {tx.Attributes.Description}: {tx.Attributes.Amount.Value}");
+    
+    // Only show first 5 for demonstration
+    if (foodCount >= 5)
+    {
+        Console.WriteLine("  ... (stopping after 5 items)");
+        break;
+    }
+}
+Console.WriteLine($"Found {foodCount} food-tagged transactions");
+
+Console.WriteLine();
+Console.WriteLine("=== GetAccountsStreamAsync ===");
+var accountStreamCount = 0;
+await foreach (var account in up.GetAccountsStreamAsync())
+{
+    accountStreamCount++;
+    Console.WriteLine($"  {account.Attributes.DisplayName}: ${account.Attributes.Balance.Value}");
+}
+Console.WriteLine($"Total accounts streamed: {accountStreamCount}");
+
+Console.WriteLine();
+Console.WriteLine("=== GetTagsStreamAsync ===");
+var tagStreamCount = 0;
+await foreach (var tag in up.GetTagsStreamAsync(pageSize: 10))
+{
+    tagStreamCount++;
+    Console.WriteLine($"  {tag.Id}");
+    
+    // Only show first 5 for demonstration
+    if (tagStreamCount >= 5)
+    {
+        Console.WriteLine("  ... (stopping after 5 tags)");
+        break;
+    }
+}
+
+Console.WriteLine();
+Console.WriteLine("=== Cancellation Token Demo ===");
+var cts = new CancellationTokenSource();
+cts.CancelAfter(TimeSpan.FromSeconds(2)); // Auto-cancel after 2 seconds
+
+var cancelTestCount = 0;
+try
+{
+    await foreach (var tx in up.GetTransactionsStreamAsync(pageSize: 1, cancellationToken: cts.Token))
+    {
+        cancelTestCount++;
+        Console.WriteLine($"  {cancelTestCount}. {tx.Attributes.Description}");
+        await Task.Delay(500); // Simulate slow processing
+    }
+}
+catch (OperationCanceledException)
+{
+    Console.WriteLine($"  Stream cancelled after {cancelTestCount} items (as expected)");
+}
+
 Console.WriteLine();
 Console.WriteLine("=== All tests completed ===");
 
