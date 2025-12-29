@@ -60,6 +60,43 @@ Full coverage of the [Up API](https://developer.up.com.au) (v1).
 
 ## Pagination
 
+### Automatic Streaming with IAsyncEnumerable
+
+Stream paginated results automatically with C# 8.0+ async streams. Network calls are triggered lazily as you enumerate:
+
+```csharp
+// Stream all transactions (automatic pagination behind the scenes)
+await foreach (var tx in upApi.GetTransactionsStreamAsync(tag: "food"))
+{
+    Console.WriteLine($"{tx.Attributes.Description}: {tx.Attributes.Amount.Value}");
+    // Yields items individually; fetches next page only when current buffer is exhausted
+}
+
+// Composition with LINQ (requires System.Linq.Async package)
+var firstExpensiveTx = await upApi.GetTransactionsStreamAsync()
+    .Where(t => t.Attributes.Amount.Value < -100)
+    .FirstOrDefaultAsync(); // Short-circuits network calls on match
+
+// With cancellation support
+var cts = new CancellationTokenSource();
+await foreach (var tx in upApi.GetTransactionsStreamAsync(cancellationToken: cts.Token))
+{
+    // Process transaction
+    if (shouldStop) cts.Cancel();
+}
+```
+
+**Available streaming methods:**
+- `GetTransactionsStreamAsync()` - Stream all transactions
+- `GetTransactionsStreamAsync(accountId)` - Stream account transactions  
+- `GetAccountsStreamAsync()` - Stream all accounts
+- `GetTagsStreamAsync()` - Stream all tags
+- `GetAttachmentsStreamAsync()` - Stream all attachments
+- `GetWebhooksStreamAsync()` - Stream all webhooks
+- `GetWebhookLogsStreamAsync(webhookId)` - Stream webhook logs
+
+### Manual Pagination
+
 All paginated responses include a `GetNextPageAsync()` helper:
 
 ```csharp
