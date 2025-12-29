@@ -5,6 +5,7 @@
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>true</ImplicitUsings>
         <UserSecretsId>up-net-sandbox</UserSecretsId>
+        <PublishAot>true</PublishAot>
     </PropertyGroup>
 
     <ItemGroup>
