@@ -1,4 +1,4 @@
-﻿using Up.NET.Api.Webhooks;
+using Up.NET.Api.Webhooks;
 using Up.NET.Api.Webhooks.Events;
 using Up.NET.Api.Webhooks.Logs;
 using Up.NET.Models;
@@ -29,14 +29,14 @@ public partial class UpApi
         return await SendRequestAsync<DataResponse<WebhookResource>>(HttpMethod.Post, "/webhooks", content: content);
     }
 
-    public async Task<UpResponse<DataResponse<WebhookResource>>> GetWebhooksAsync(string id)
+    public async Task<UpResponse<DataResponse<WebhookResource>>> GetWebhookAsync(string id)
         => await SendRequestAsync<DataResponse<WebhookResource>>(HttpMethod.Get, $"/webhooks/{id}");
 
     public async Task<UpResponse<NoResponse>> DeleteWebhookAsync(string id)
         => await SendRequestAsync<NoResponse>(HttpMethod.Delete, $"/webhooks/{id}");
 
-    public async Task<UpResponse<WebhookEventResource>> PingWebhookAsync(string webhookId)
-        => await SendRequestAsync<WebhookEventResource>(HttpMethod.Post, $"/webhooks/{webhookId}/ping");
+    public async Task<UpResponse<DataResponse<WebhookEventResource>>> PingWebhookAsync(string webhookId)
+        => await SendRequestAsync<DataResponse<WebhookEventResource>>(HttpMethod.Post, $"/webhooks/{webhookId}/ping");
 
     public async Task<UpResponse<PaginatedDataResponse<WebhookDeliveryLogResource>>> GetWebhookLogsAsync(
         string webhookId)
