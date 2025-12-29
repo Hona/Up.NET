@@ -32,7 +32,7 @@ public partial class UpApi
 
         if (status != null)
         {
-            queryParams.Add("filter[status]", status.Value.GetEnumMemberValue());
+            queryParams.Add("filter[status]", status.Value.ToApiString());
         }
 
         if (since != null)

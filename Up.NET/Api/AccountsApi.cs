@@ -19,12 +19,12 @@ public partial class UpApi
 
         if (accountType.HasValue)
         {
-            queryParams.Add("filter[accountType]", accountType.Value.GetEnumMemberValue() ?? accountType.Value.ToString().ToUpperInvariant());
+            queryParams.Add("filter[accountType]", accountType.Value.ToApiString());
         }
 
         if (ownershipType.HasValue)
         {
-            queryParams.Add("filter[ownershipType]", ownershipType.Value.GetEnumMemberValue() ?? ownershipType.Value.ToString().ToUpperInvariant());
+            queryParams.Add("filter[ownershipType]", ownershipType.Value.ToApiString());
         }
 
         return await SendPaginatedRequestAsync<AccountResource>(
