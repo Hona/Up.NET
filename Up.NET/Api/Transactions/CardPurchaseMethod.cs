@@ -1,33 +1,32 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
 namespace Up.NET.Api.Transactions;
 
-[JsonConverter(typeof(JsonStringEnumMemberConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter<CardPurchaseMethodType>))]
 public enum CardPurchaseMethodType
 {
-    [EnumMember(Value = "BAR_CODE")]
+    [JsonStringEnumMemberName("BAR_CODE")]
     BarCode,
 
-    [EnumMember(Value = "OCR")]
+    [JsonStringEnumMemberName("OCR")]
     Ocr,
 
-    [EnumMember(Value = "CARD_PIN")]
+    [JsonStringEnumMemberName("CARD_PIN")]
     CardPin,
 
-    [EnumMember(Value = "CARD_DETAILS")]
+    [JsonStringEnumMemberName("CARD_DETAILS")]
     CardDetails,
 
-    [EnumMember(Value = "CARD_ON_FILE")]
+    [JsonStringEnumMemberName("CARD_ON_FILE")]
     CardOnFile,
 
-    [EnumMember(Value = "ECOMMERCE")]
+    [JsonStringEnumMemberName("ECOMMERCE")]
     Ecommerce,
 
-    [EnumMember(Value = "MAGNETIC_STRIPE")]
+    [JsonStringEnumMemberName("MAGNETIC_STRIPE")]
     MagneticStripe,
 
-    [EnumMember(Value = "CONTACTLESS")]
+    [JsonStringEnumMemberName("CONTACTLESS")]
     Contactless
 }
 
