@@ -9,6 +9,7 @@
         <PackageId>HUp.NET</PackageId>
         <Version>1.3.0</Version>
         <ImplicitUsings>true</ImplicitUsings>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     </PropertyGroup>
 
     <ItemGroup>
