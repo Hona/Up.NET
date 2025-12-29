@@ -1,11 +1,13 @@
-﻿using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
 namespace Up.NET.Api.Transactions;
 
-[JsonConverter(typeof(JsonStringEnumMemberConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter<TransactionStatus>))]
 public enum TransactionStatus
 {
-    [EnumMember(Value = "HELD")] Held,
-    [EnumMember(Value = "SETTLED")] Settled
+    [JsonStringEnumMemberName("HELD")]
+    Held,
+
+    [JsonStringEnumMemberName("SETTLED")]
+    Settled
 }

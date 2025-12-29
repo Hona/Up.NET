@@ -1,12 +1,16 @@
-﻿using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
 namespace Up.NET.Api.Accounts;
 
-[JsonConverter(typeof(JsonStringEnumMemberConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter<AccountType>))]
 public enum AccountType
 {
+    [JsonStringEnumMemberName("SAVER")]
     Saver,
+
+    [JsonStringEnumMemberName("TRANSACTIONAL")]
     Transactional,
-    [EnumMember(Value = "HOME_LOAN")] HomeLoan
+
+    [JsonStringEnumMemberName("HOME_LOAN")]
+    HomeLoan
 }

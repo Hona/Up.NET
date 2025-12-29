@@ -1,14 +1,16 @@
-﻿using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
 namespace Up.NET.Api.Webhooks.Logs;
 
-[JsonConverter(typeof(JsonStringEnumMemberConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter<WebhookDeliveryStatus>))]
 public enum WebhookDeliveryStatus
 {
-    [EnumMember(Value = "DELIVERED")] Delivered,
-    [EnumMember(Value = "UNDELIVERABLE")] Undeliverable,
+    [JsonStringEnumMemberName("DELIVERED")]
+    Delivered,
 
-    [EnumMember(Value = "BAD_RESPONSE_CODE")]
+    [JsonStringEnumMemberName("UNDELIVERABLE")]
+    Undeliverable,
+
+    [JsonStringEnumMemberName("BAD_RESPONSE_CODE")]
     BadResponseCode
 }

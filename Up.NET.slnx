@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="Up.NET.Sandbox/Up.NET.Sandbox.csproj" />
+    <Project Path="Up.NET/Up.NET.csproj" />
+  </Folder>
+</Solution>

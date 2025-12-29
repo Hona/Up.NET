@@ -1,18 +1,19 @@
-﻿using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
 namespace Up.NET.Api.Webhooks.Events;
 
-[JsonConverter(typeof(JsonStringEnumMemberConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter<WebhookEventType>))]
 public enum WebhookEventType
 {
-    [EnumMember(Value = "TRANSACTION_CREATED")]
+    [JsonStringEnumMemberName("TRANSACTION_CREATED")]
     TransactionCreated,
 
-    [EnumMember(Value = "TRANSACTION_SETTLED")]
+    [JsonStringEnumMemberName("TRANSACTION_SETTLED")]
     TransactionSettled,
 
-    [EnumMember(Value = "TRANSACTION_DELETED")]
+    [JsonStringEnumMemberName("TRANSACTION_DELETED")]
     TransactionDeleted,
-    [EnumMember(Value = "PING")] Ping
+
+    [JsonStringEnumMemberName("PING")]
+    Ping
 }
