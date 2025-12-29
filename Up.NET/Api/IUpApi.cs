@@ -52,9 +52,7 @@ public interface IUpApi
         int? pageSize = null, TransactionStatus? status = null, DateTime? since = null, DateTime? until = null,
         string category = null, string tag = null);
 
-    Task<UpResponse<DataResponse<TransactionResource>>> GetTransactionAsync(string id, int? pageSize = null,
-        TransactionStatus? status = null, DateTime? since = null, DateTime? until = null, string category = null,
-        string tag = null);
+    Task<UpResponse<DataResponse<TransactionResource>>> GetTransactionAsync(string id);
 
     // Utility
     Task<UpResponse<PingResponse>> GetPingAsync();
