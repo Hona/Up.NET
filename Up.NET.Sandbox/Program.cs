@@ -140,6 +140,28 @@ if (tags.Success)
 // ============================================
 
 Console.WriteLine();
+Console.WriteLine("=== GetTransactionsAsync (with date filter) ===");
+var recentTransactions = await up.GetTransactionsAsync(
+    pageSize: 3, 
+    since: DateTime.UtcNow.AddDays(-7));
+Console.WriteLine($"Success: {recentTransactions.Success}");
+if (recentTransactions.Success)
+{
+    Console.WriteLine($"Transactions in last 7 days: {recentTransactions.Response.Data.Count}");
+}
+
+Console.WriteLine();
+Console.WriteLine("=== GetTransactionsAsync (with status filter) ===");
+var settledTransactions = await up.GetTransactionsAsync(
+    pageSize: 3, 
+    status: Up.NET.Api.Transactions.TransactionStatus.Settled);
+Console.WriteLine($"Success: {settledTransactions.Success}");
+if (settledTransactions.Success)
+{
+    Console.WriteLine($"Settled transactions: {settledTransactions.Response.Data.Count}");
+}
+
+Console.WriteLine();
 Console.WriteLine("=== GetTransactionsAsync ===");
 var transactions = await up.GetTransactionsAsync(pageSize: 5);
 Console.WriteLine($"Success: {transactions.Success}");
@@ -241,6 +263,77 @@ if (webhooks.Success && webhooks.Response.Data.Any())
         Console.WriteLine($"Logs count: {webhookLogs.Response.Data.Count}");
     }
 }
+
+// ============================================
+// TAG MANAGEMENT (commented out - modifies data)
+// ============================================
+
+// Uncomment to test tag management:
+// if (transactions.Success && transactions.Response.Data.Any())
+// {
+//     var testTransactionId = transactions.Response.Data.First().Id;
+//     
+//     Console.WriteLine();
+//     Console.WriteLine("=== AddTagsToTransactionAsync ===");
+//     var addTagResult = await up.AddTagsToTransactionAsync(testTransactionId, "test-tag");
+//     Console.WriteLine($"Success: {addTagResult.Success}");
+//     
+//     Console.WriteLine();
+//     Console.WriteLine("=== RemoveTagsFromTransactionAsync ===");
+//     var removeTagResult = await up.RemoveTagsFromTransactionAsync(testTransactionId, "test-tag");
+//     Console.WriteLine($"Success: {removeTagResult.Success}");
+// }
+
+// ============================================
+// CATEGORIZATION (commented out - modifies data)
+// ============================================
+
+// Uncomment to test categorization:
+// if (transactions.Success && transactions.Response.Data.Any() && categories.Success && categories.Response.Data.Any())
+// {
+//     var testTransactionId = transactions.Response.Data.First().Id;
+//     var testCategoryId = categories.Response.Data.First().Id;
+//     
+//     Console.WriteLine();
+//     Console.WriteLine("=== CategorizeTransactionAsync ===");
+//     var categorizeResult = await up.CategorizeTransactionAsync(testTransactionId, testCategoryId);
+//     Console.WriteLine($"Success: {categorizeResult.Success}");
+//     
+//     // To de-categorize, pass null:
+//     // var decategorizeResult = await up.CategorizeTransactionAsync(testTransactionId, null);
+// }
+
+// ============================================
+// WEBHOOK MANAGEMENT (commented out - modifies data)
+// ============================================
+
+// Uncomment to test webhook creation:
+// Console.WriteLine();
+// Console.WriteLine("=== CreateWebhookAsync ===");
+// var newWebhook = await up.CreateWebhookAsync(new Up.NET.Api.Webhooks.WebhookInputResource
+// {
+//     Attributes = new Up.NET.Api.Webhooks.WebhookInputAttributes
+//     {
+//         Url = "https://example.com/webhook",
+//         Description = "Test webhook"
+//     }
+// });
+// Console.WriteLine($"Success: {newWebhook.Success}");
+// if (newWebhook.Success)
+// {
+//     Console.WriteLine($"Webhook ID: {newWebhook.Response.Data.Id}");
+//     Console.WriteLine($"Secret Key: {newWebhook.Response.Data.Attributes.SecretKey}");
+//     
+//     Console.WriteLine();
+//     Console.WriteLine("=== PingWebhookAsync ===");
+//     var pingResult = await up.PingWebhookAsync(newWebhook.Response.Data.Id);
+//     Console.WriteLine($"Success: {pingResult.Success}");
+//     
+//     Console.WriteLine();
+//     Console.WriteLine("=== DeleteWebhookAsync ===");
+//     var deleteResult = await up.DeleteWebhookAsync(newWebhook.Response.Data.Id);
+//     Console.WriteLine($"Success: {deleteResult.Success}");
+// }
 
 Console.WriteLine();
 Console.WriteLine("=== All tests completed ===");
