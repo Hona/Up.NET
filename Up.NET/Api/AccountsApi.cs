@@ -1,17 +1,30 @@
-﻿using Up.NET.Api.Accounts;
+using Up.NET.Api.Accounts;
 using Up.NET.Models;
 
 namespace Up.NET.Api;
 
 public partial class UpApi
 {
-    public async Task<UpResponse<PaginatedDataResponse<AccountResource>>> GetAccountsAsync(int? pageSize = null)
+    public async Task<UpResponse<PaginatedDataResponse<AccountResource>>> GetAccountsAsync(
+        int? pageSize = null,
+        AccountType? accountType = null,
+        OwnershipType? ownershipType = null)
     {
         var queryParams = new Dictionary<string, string>();
 
         if (pageSize.HasValue)
         {
             queryParams.Add("page[size]", pageSize.ToString());
+        }
+
+        if (accountType.HasValue)
+        {
+            queryParams.Add("filter[accountType]", accountType.Value.GetEnumMemberValue() ?? accountType.Value.ToString().ToUpperInvariant());
+        }
+
+        if (ownershipType.HasValue)
+        {
+            queryParams.Add("filter[ownershipType]", ownershipType.Value.GetEnumMemberValue() ?? ownershipType.Value.ToString().ToUpperInvariant());
         }
 
         return await SendPaginatedRequestAsync<AccountResource>(
