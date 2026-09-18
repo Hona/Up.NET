@@ -124,8 +124,14 @@ Install it as a global .NET tool:
 
 ```powershell
 dotnet tool install --global HUp.NET.Mcp
-$env:UP_ACCESS_TOKEN = "your-personal-access-token"
-up-mcp
+up-mcp auth login
+```
+
+The login command validates the token and stores it in Windows Credential Manager, macOS Keychain, or the Linux Secret Service. The token is not written to a configuration file.
+
+```powershell
+up-mcp auth status
+up-mcp auth logout
 ```
 
 Use `dotnet tool update --global HUp.NET.Mcp` to update an existing installation.
@@ -136,14 +142,13 @@ Example MCP client configuration for the global tool:
 {
   "mcpServers": {
     "up-bank": {
-      "command": "up-mcp",
-      "env": {
-        "UP_ACCESS_TOKEN": "your-personal-access-token"
-      }
+      "command": "up-mcp"
     }
   }
 }
 ```
+
+On Linux, a desktop Secret Service such as GNOME Keyring, KWallet, or KeePassXC must be available. For CI, containers, and other headless systems, inject `UP_ACCESS_TOKEN` from the platform's secret manager instead.
 
 ### Run from source
 
