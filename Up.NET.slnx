@@ -5,6 +5,7 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/src/">
+    <Project Path="Up.NET.Mcp/Up.NET.Mcp.csproj" />
     <Project Path="Up.NET.Sandbox/Up.NET.Sandbox.csproj" />
     <Project Path="Up.NET/Up.NET.csproj" />
   </Folder>

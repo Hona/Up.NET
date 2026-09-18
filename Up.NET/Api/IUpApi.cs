@@ -36,7 +36,7 @@ public interface IUpApi
     // Categories
     Task<UpResponse<DataResponse<List<CategoriesResource>>>> GetCategoriesAsync(string parentId = null);
     Task<UpResponse<DataResponse<CategoriesResource>>> GetCategoryAsync(string id);
-    Task<UpResponse<NoResponse>> CategorizeTransactionAsync(string transactionId, string categoryId);
+    Task<UpResponse<NoResponse>> CategorizeTransactionAsync(string transactionId, string categoryId = null);
 
     // Tags
     Task<UpResponse<PaginatedDataResponse<TagResource>>> GetTagsAsync(int? pageSize = null);

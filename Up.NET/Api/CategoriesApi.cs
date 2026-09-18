@@ -21,7 +21,7 @@ public partial class UpApi
     public async Task<UpResponse<DataResponse<CategoriesResource>>> GetCategoryAsync(string id)
         => await SendRequestAsync<DataResponse<CategoriesResource>>(HttpMethod.Get, $"/categories/{id}");
 
-    public async Task<UpResponse<NoResponse>> CategorizeTransactionAsync(string transactionId, string categoryId)
+    public async Task<UpResponse<NoResponse>> CategorizeTransactionAsync(string transactionId, string categoryId = null)
     {
         var content = new DataWrapper<CategoryInputResourceIdentifier>
         {

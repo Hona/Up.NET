@@ -1,0 +1,63 @@
+name: Publish MCP tool
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Package version
+        required: true
+        default: 1.0.0
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: Publish HUp.NET.Mcp
+    runs-on: ubuntu-latest
+    environment: nuget
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Validate version
+        shell: pwsh
+        run: |
+          if ('${{ inputs.version }}' -notmatch '^\d+\.\d+\.\d+([-.][0-9A-Za-z.-]+)?$') {
+            throw 'version must be a valid semantic version.'
+          }
+
+      - name: Build
+        run: dotnet build Up.NET.slnx --configuration Release
+
+      - name: Pack global tool
+        run: >-
+          dotnet pack Up.NET.Mcp/Up.NET.Mcp.csproj
+          --configuration Release
+          --no-build
+          --output artifacts
+          -p:Version=${{ inputs.version }}
+
+      - name: Log in to NuGet.org with OIDC
+        id: nuget-login
+        uses: NuGet/login@v1
+        with:
+          user: ${{ vars.NUGET_USER }}
+
+      - name: Publish global tool
+        run: >-
+          dotnet nuget push
+          artifacts/HUp.NET.Mcp.${{ inputs.version }}.nupkg
+          --source https://api.nuget.org/v3/index.json
+          --api-key ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
+          --skip-duplicate

@@ -116,6 +116,66 @@ dotnet publish -c Release -p:PublishAot=true
 1. Download the [Up app](https://up.com.au) and create an account
 2. Get your Personal Access Token at https://api.up.com.au
 
+## MCP Server
+
+The included .NET MCP server exposes all 20 Up API v1 endpoint operations as tools over stdio. It also includes a tool that safely follows the opaque pagination links returned by list operations.
+
+Install it as a global .NET tool:
+
+```powershell
+dotnet tool install --global HUp.NET.Mcp
+$env:UP_ACCESS_TOKEN = "your-personal-access-token"
+up-mcp
+```
+
+Use `dotnet tool update --global HUp.NET.Mcp` to update an existing installation.
+
+Example MCP client configuration for the global tool:
+
+```json
+{
+  "mcpServers": {
+    "up-bank": {
+      "command": "up-mcp",
+      "env": {
+        "UP_ACCESS_TOKEN": "your-personal-access-token"
+      }
+    }
+  }
+}
+```
+
+### Run from source
+
+```powershell
+$env:UP_ACCESS_TOKEN = "your-personal-access-token"
+dotnet run --project Up.NET.Mcp
+```
+
+Build once before adding the server to an MCP client:
+
+```powershell
+dotnet build Up.NET.Mcp -c Release
+```
+
+Example MCP client configuration when running from source:
+
+```json
+{
+  "mcpServers": {
+    "up-bank": {
+      "command": "dotnet",
+      "args": [
+        "C:\\Repos\\Hona\\Up.NET\\Up.NET.Mcp\\bin\\Release\\net10.0\\Up.NET.Mcp.dll"
+      ],
+      "env": {
+        "UP_ACCESS_TOKEN": "your-personal-access-token"
+      }
+    }
+  }
+}
+```
+
 ## Links
 
 * [Up Website](https://up.com.au)
